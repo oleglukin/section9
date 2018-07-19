@@ -15,17 +15,18 @@ firebase.initializeApp(config);
 // GraphQL resolvers
 const resolveFunctions = {
   Query: {
-    flights: () => {
-      var airlineID = firebase.database().ref("/jan-2018-limited/");
-      return airlineID.once("value").then(function (snapshot) {
+    flights: (parent, args) => {
+      const { first } = args;
+      var fligths = firebase.database().ref("/jan-2018-limited/");
+      return fligths.limitToFirst(first).once("value").then(function (snapshot) {
         return snapshot.val();
       });
     },
 
     flight: (parent, args) => {
       const { id } = args;
-      var airlineID = firebase.database().ref("/jan-2018-limited/" + id);
-      return airlineID.once("value").then(function (snapshot) {
+      var fligths = firebase.database().ref("/jan-2018-limited/" + id);
+      return fligths.once("value").then(function (snapshot) {
         return snapshot.val();
       });
     },

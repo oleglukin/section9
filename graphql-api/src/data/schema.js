@@ -13,14 +13,14 @@ type Flight {
   YEAR: Int
   MONTH: Int
   QUARTER: Int
-  Airline: AirlineID
+  AIRLINE_ID: Int
   CANCELLED: String
   ORIGIN_CITY_NAME: String
   DEST_CITY_NAME: String
 }
 # the schema allows the following query:
 type Query {
-  flights: [Flight]
+  flights(first: Int): [Flight]
   flight(id: ID!): Flight
   airline(id: ID!): AirlineID
   airlines: [AirlineID]
