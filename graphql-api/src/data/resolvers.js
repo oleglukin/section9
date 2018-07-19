@@ -1,44 +1,51 @@
-const authors = [
-    { id: 1, firstName: "Tom", lastName: "Coleman" },
-    { id: 2, firstName: "Sashko", lastName: "Stubailo" }
-  ]
-  
-  const posts = [
-    { id: 1, authorId: 1, title: "Introduction to GraphQL", votes: 2 },
-    { id: 2, authorId: 2, title: "GraphQL Rocks", votes: 3 },
-    { id: 3, authorId: 2, title: "Advanced GraphQL", votes: 1 }
-  ]
-  
-  const resolveFunctions = {
-    Query: {
-      posts() {
-        return posts
-      },
-      author(_, { id }) {
-        return authors.find(author => author.id === id)
-      }
+import firebase from 'firebase'
+
+// Initialise Firebase with a config
+var config = {
+  apiKey: "BTRaS45950q6FRKdoLzgtr45hm11RXnQT7GaCHo",
+  authDomain: "section9-210115.firebaseapp.com",
+  databaseURL: "https://section9-210115.firebaseio.com",
+  projectId: "section9-210115",
+  storageBucket: "section9-210115.appspot.com",
+  messagingSenderId: "124504813524"
+};
+firebase.initializeApp(config);
+
+
+// GraphQL resolvers
+const resolveFunctions = {
+  Query: {
+    flights: (parent, args) => {
+      const { first } = args;
+      var fligths = firebase.database().ref("/jan-2018-limited/");
+      return fligths.limitToFirst(first).once("value").then(function (snapshot) {
+        return snapshot.val();
+      });
     },
-    Mutation: {
-      upvotePost(_, { postId }) {
-        const post = posts.find(post => post.id === postId)
-        if (!post) {
-          throw new Error(`Couldn't find post with id ${postId}`)
-        }
-        post.votes += 1
-        // pubsub.publish('postUpvoted', post);
-        return post
-      }
+
+    flight: (parent, args) => {
+      const { id } = args;
+      var fligths = firebase.database().ref("/jan-2018-limited/" + id);
+      return fligths.once("value").then(function (snapshot) {
+        return snapshot.val();
+      });
     },
-    Author: {
-      posts(author) {
-        return posts.filter(post => post.authorId === author.id)
-      }
+
+    airline: (parent, args) => {
+      const { id } = args;
+      var airlineID = firebase.database().ref("/AirlineID/" + id);
+      return airlineID.once("value").then(function (snapshot) {
+        return snapshot.val();
+      });
     },
-    Post: {
-      author(post) {
-        return authors.find(author => author.id === post.authorId)
-      }
+
+    airlines: () => {
+      var airlineID = firebase.database().ref("/AirlineID/");
+      return airlineID.once("value").then(function (snapshot) {
+        return snapshot.val();
+      });
     }
   }
-  
-  export default resolveFunctions
+}
+
+export default resolveFunctions
