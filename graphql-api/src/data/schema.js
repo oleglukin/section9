@@ -4,20 +4,26 @@ import resolvers from "./resolvers"
 
 const schema = `
 type AirlineID {
-  id: Int! # the ! means that every airline object _must_ have an id
-  Code: String
-  Description: Int
+  id: ID!
+  Code: Int
+  Description: String
 }
 type Flight {
-  AIRLINE_ID: Int
-  CANCELLED: String
+  id: ID!
+  YEAR: Int
+  MONTH: Int
+  QUARTER: Int
   Airline: AirlineID
-  votes: Int
+  CANCELLED: String
+  ORIGIN_CITY_NAME: String
+  DEST_CITY_NAME: String
 }
 # the schema allows the following query:
 type Query {
   flights: [Flight]
-  airline(id: Int!): AirlineID
+  flight(id: ID!): Flight
+  airline(id: ID!): AirlineID
+  airlines: [AirlineID]
 }
 `
 

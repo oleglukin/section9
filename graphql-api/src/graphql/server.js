@@ -4,24 +4,24 @@ import { graphqlExpress, graphiqlExpress } from "apollo-server-express"
 import schema from "../data/schema"
 import { printSchema } from "graphql/utilities/schemaPrinter"
 
+// setup server
 const setupGraphQLServer = () => {
-  // setup server
   const graphQLServer = express()
 
-  // /api/graphql
+  // /graphql
   graphQLServer.use(
     "/graphql",
     bodyParser.json(),
     graphqlExpress({ schema, context: {} })
   )
 
-  // /api/graphiql
+  // /graphiql
   graphQLServer.use(
     "/graphiql",
     graphiqlExpress({ endpointURL: "/graphql" })
   )
 
-  // /api/schema
+  // /schema
   graphQLServer.use("/schema", (req, res) => {
     res.set("Content-Type", "text/plain")
     res.send(printSchema(schema))
