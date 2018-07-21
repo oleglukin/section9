@@ -1,7 +1,7 @@
 import bodyParser from "body-parser"
 import express from "express"
 import { graphqlExpress, graphiqlExpress } from "apollo-server-express"
-import schema from "../data/schema"
+import schema from "./data/schema"
 import { printSchema } from "graphql/utilities/schemaPrinter"
 
 // setup server
