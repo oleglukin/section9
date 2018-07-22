@@ -50,12 +50,10 @@ skip_files:
 ```
 
 
-
-
-
-
-
-
+## How to use it
+Simply follow the Graphi QL link: https://section9-210115.appspot.com/graphiql  
+Run your queries there. Refer to the [schema](https://section9-210115.appspot.com/schema)
+  
 Sample query:  
 ```
 query{
@@ -71,5 +69,14 @@ query{
       Description
     }
   }
+}
+```
+
+You can use some API client like [Postman](https://www.getpostman.com/) to run your queries over HTTP. Example POST query:  
+URL: https://section9-210115.appspot.com/graphql  
+Json request body:
+```
+{
+	"query": "{ flights(first:2){YEAR MONTH QUARTER CANCELLED ORIGIN_CITY_NAME DEST_CITY_NAME airline{Code Description}}}"
 }
 ```
