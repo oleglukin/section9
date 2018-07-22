@@ -10,7 +10,9 @@ var firebaseConfig = {
 
 var endpoints = {
     fligths: "/jan-2018-limited/",
-    airlines: "/AirlineID/"
+    airlines: "/AirlineID/",
+    airports: "/Airport/",
+    delayGroups: "/DepartureDelayGroups/"
 }
 
-export {firebaseConfig, endpoints}
+export { firebaseConfig, endpoints }

@@ -61,12 +61,28 @@ Sample query:
 query{
   flights(first:2){
     YEAR
-    MONTH
-    QUARTER
-    CANCELLED
-    ORIGIN_CITY_NAME
-    DEST_CITY_NAME
+    QUARTER    
     airline{
+      Code
+      Description
+    }
+    ORIGIN_CITY_NAME
+    origin_airport{
+      Code
+      Description
+    }
+    destination_airport{
+      Code
+      Description
+    }
+    DEP_TIME
+    DEP_DELAY_GROUP
+    departure_delay_group {
+      Code
+      Description
+    }
+    ARR_DELAY_GROUP
+    arrival_delay_group {
       Code
       Description
     }
