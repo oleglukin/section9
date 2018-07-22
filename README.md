@@ -117,7 +117,7 @@ The app uses Firebase as its data storage. This is probably not the best choise.
 The API could support some analytics/reporting applications. It could also support some data scientists and analysts who are capable of exploring data through REST APIs. It can serve as a single endpoint to multiple data sources. Also client applications don't need to be changed as long as Graph QL schema doesn't change. That makes backend databases and services changes more flexible.
 
 ## Resources
-The follwoing tutorials and documentation pages were used to create this app:
+The following tutorials and documentation pages were used to create this app:
 - [GraphQL Server on Cloud Functions for Firebase](https://codeburst.io/graphql-server-on-cloud-functions-for-firebase-ae97441399c0)
 - [RESTful Web Service with Node.js, Google App Engine and Firebase Real-time Database](https://medium.com/@csgsajeewa/restful-web-service-with-node-js-google-app-engine-and-firebase-48910b0b16a7)
 - [Apollo Server documentation](https://www.apollographql.com/docs/apollo-server/)
