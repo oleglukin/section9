@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import {firebaseConfig, endpoints} from '../config'
+import { firebaseConfig, endpoints } from '../config'
 
 firebase.initializeApp(firebaseConfig);
 
@@ -34,7 +34,7 @@ const resolvers = {
         var airlines = firebase.database().ref(endpoints.airlines);
         return airlines.limitToFirst(1)
           .orderByChild("Code")
-          .equalTo(Code)
+          .equalTo(args.Code)
           .once("value").then(function (snapshot) {
             return snapshot.val();
           });
@@ -46,6 +46,15 @@ const resolvers = {
       return airlines.limitToFirst(args.first).once("value").then(function (snapshot) {
         return snapshot.val();
       });
+    },
+
+    airport: (parent, args) => {
+      var airports = firebase.database().ref(endpoints.airports);
+      return airports.limitToFirst(1).orderByChild("Code")
+        .equalTo(args.Code)
+        .once("value").then(function (snapshot) {
+          return snapshot.val();
+        });
     }
   },
 
@@ -58,7 +67,7 @@ const resolvers = {
         .equalTo(parent.AIRLINE_ID)
         .once("value").then(function (snapshot) {
           var val = snapshot.val();
-          return val[Object.keys(val)[0]]; 
+          return val[Object.keys(val)[0]];
         });
     }
   }

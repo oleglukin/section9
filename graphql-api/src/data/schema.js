@@ -8,6 +8,11 @@ type Airline {
   Code: Int
   Description: String
 }
+type Airport {
+  id: ID!
+  Code: String
+  Description: String
+}
 type Flight {
   id: ID!
   YEAR: Int
@@ -25,6 +30,7 @@ type Query {
   flight(id: ID!): Flight
   airline(id: ID!): Airline
   airlines(first: Int): [Airline]
+  airport(code: String): Airport
 }
 `
 
