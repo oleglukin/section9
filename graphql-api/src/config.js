@@ -8,6 +8,7 @@ var firebaseConfig = {
     messagingSenderId: "124504813524"
 };
 
+// Firebase endpoints (objects to query)
 var endpoints = {
     fligths: "/jan-2018-limited/",
     airlines: "/AirlineID/",
