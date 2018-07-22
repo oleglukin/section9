@@ -4,7 +4,7 @@ import { graphqlExpress, graphiqlExpress } from "apollo-server-express"
 import schema from "./data/schema"
 import { printSchema } from "graphql/utilities/schemaPrinter"
 
-// setup server
+// setup express server with 3 endpoints
 const setupGraphQLServer = () => {
   const graphQLServer = express()
 

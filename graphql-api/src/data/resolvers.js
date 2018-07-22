@@ -1,9 +1,8 @@
 import firebase from 'firebase'
-import firebaseConfig from '../config'
+import {firebaseConfig, endpoints} from '../config'
 
 firebase.initializeApp(firebaseConfig);
 
-var fligthsParent = "/jan-2018-limited/";
 
 
 // GraphQL resolvers
@@ -11,14 +10,14 @@ const resolvers = {
   Query: {
     // Get first N flights from the database
     flights: (parent, args) => {
-      var fligths = firebase.database().ref(fligthsParent);
+      var fligths = firebase.database().ref(endpoints.fligths);
       return fligths.limitToFirst(args.first).once("value").then(function (snapshot) {
         return snapshot.val();
       });
     },
 
     flight: (parent, args) => {
-      var fligths = firebase.database().ref(fligthsParent + args.id);
+      var fligths = firebase.database().ref(endpoints.fligths + args.id);
       return fligths.once("value").then(function (snapshot) {
         return snapshot.val();
       });
@@ -26,13 +25,13 @@ const resolvers = {
 
     airline: (parent, args) => {
       if (args.id) {
-        var airline = firebase.database().ref("/AirlineID/" + args.id);
+        var airline = firebase.database().ref(endpoints.airlines + args.id);
         return airline.once("value").then(function (snapshot) {
           return snapshot.val();
         });
       }
       else if (args.Code) {
-        var airlines = firebase.database().ref("/AirlineID/");
+        var airlines = firebase.database().ref(endpoints.airlines);
         return airlines.limitToFirst(1)
           .orderByChild("Code")
           .equalTo(Code)
@@ -43,7 +42,7 @@ const resolvers = {
     },
 
     airlines: (parent, args) => {
-      var airlines = firebase.database().ref("/AirlineID/");
+      var airlines = firebase.database().ref(endpoints.airlines);
       return airlines.limitToFirst(args.first).once("value").then(function (snapshot) {
         return snapshot.val();
       });
@@ -53,7 +52,7 @@ const resolvers = {
   // Get Airline info for each flight by AIRLINE_ID
   Flight: {
     airline: parent => {
-      var airlines = firebase.database().ref("/AirlineID/");
+      var airlines = firebase.database().ref(endpoints.airlines);
       return airlines.limitToFirst(1)
         .orderByChild("Code")
         .equalTo(parent.AIRLINE_ID)

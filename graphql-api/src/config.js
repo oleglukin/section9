@@ -8,4 +8,9 @@ var firebaseConfig = {
     messagingSenderId: "124504813524"
 };
 
-export default firebaseConfig
+var endpoints = {
+    fligths: "/jan-2018-limited/",
+    airlines: "/AirlineID/"
+}
+
+export {firebaseConfig, endpoints}
