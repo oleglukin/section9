@@ -15,7 +15,7 @@ You can access GraphiQL UI here: https://section9-210115.appspot.com/graphiql
 View GraphQL schema: https://section9-210115.appspot.com/schema
 
 ### Prepare some data to query
-The app queries Firebase database, so in order to run those queries you would need some data in a Firebase cluster.  
+The app reads data from Firebase database, so in order to run those queries you would need some data in a Firebase DB.  
 Follow this page to find out how to set up a database: https://firebase.google.com/  
 After that you would need to load some sample data into the database. This project uses some sample data from 'Airline On-Time Performance Data' database from [US Bureau of Transportation Statistics](https://www.transtats.bts.gov/Tables.asp?DB_ID=120). Data sets:  
 - On-Time Performance (the main data set)  
@@ -23,7 +23,7 @@ Plus some reference data:
 - AirlineID
 
 Downloaded CSV files can be imported into Firebase using some 3rd party tools. This is how it can be done manually:  
-- Convert CSV files into Json using some tool like [Total CSV Converter](https://www.coolutils.com/TotalCSVConverter)
+- Convert CSV files into Json using a tool like [Total CSV Converter](https://www.coolutils.com/TotalCSVConverter)
 - Import Json files into your database using [Firebase console](https://support.google.com/firebase/answer/6386780?hl=en)
 
 Copy firebase API keys and endpoints to [config.js](graphql-api/src/config.js)  
@@ -93,6 +93,7 @@ The actual middleware business logic is defined in [resolvers.js](/graphql-api/s
 The app uses Firebase as its data storage. This is probably not the best choise. Being a realtime NoSQL database it is good for mobile apps. However probably not for analytics applications. It lacks features of relational databases, limited indexing, no aggregation.
 
 ## Things to improve
+- Add more resolvers to access data in different ways according to user requirements
 - Support other data sources, e.g. relational databases, other NoSQL databases, REST APIs.
 - Add mutations if clients need to modify data
 
@@ -106,3 +107,4 @@ The follwoing tutorials and documentation pages were used to create this app:
 - [Apollo Server documentation](https://www.apollographql.com/docs/apollo-server/)
 - [Build a CMS API With GraphQL and Apollo Server](https://blog.manifold.co/build-a-cms-api-with-graphql-and-apollo-server-ae6a5d5c7fb3)
 - [How to wrap a REST API with GraphQL - A 3-step tutorial](https://www.prisma.io/blog/how-to-wrap-a-rest-api-with-graphql-8bf3fb17547d/)
+- [Google Firebase documentation](https://firebase.google.com)
