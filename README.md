@@ -15,16 +15,16 @@ You can access GraphiQL UI here: https://section9-210115.appspot.com/graphiql
 View GraphQL schema: https://section9-210115.appspot.com/schema
 
 ### Prepare some data to query
-The app queries Firebase database, so in order to run those queries you would need some data in a Firebase cluster.
-Follow this page to find out how to set up a database: https://firebase.google.com/
-After that you would need to load some sample data into the database. This project uses some sample data from 'Airline On-Time Performance Data' database from US Bureau of Transportation Statistics (https://www.transtats.bts.gov/Tables.asp?DB_ID=120). Data sets:  
-- On-Time Performance (the main data set)
+The app queries Firebase database, so in order to run those queries you would need some data in a Firebase cluster.  
+Follow this page to find out how to set up a database: [https://firebase.google.com/] 
+After that you would need to load some sample data into the database. This project uses some sample data from 'Airline On-Time Performance Data' database from [US Bureau of Transportation Statistics](https://www.transtats.bts.gov/Tables.asp?DB_ID=120). Data sets:  
+- On-Time Performance (the main data set)  
 Plus some reference data:
 - AirlineID
 
 Downloaded CSV files can be imported into Firebase using some 3rd party tools. This is how it can be done manually:  
-- Convert CSV files into Json using some tool like Total CSV Converter (https://www.coolutils.com/TotalCSVConverter)
-- Import Json files into your database using Firebase console (https://support.google.com/firebase/answer/6386780?hl=en)
+- Convert CSV files into Json using some tool like [Total CSV Converter](https://www.coolutils.com/TotalCSVConverter)
+- Import Json files into your database using [Firebase console](https://support.google.com/firebase/answer/6386780?hl=en)
 
 
 ### Steps to run it locally
@@ -37,15 +37,17 @@ Downloaded CSV files can be imported into Firebase using some 3rd party tools. T
 
 ### Steps to deploy to GCP App Engine
 1. Pull code, install dependencies and build
-2. Create a project in GCP (https://cloud.google.com/resource-manager/docs/creating-managing-projects)
+2. Create a [project in GCP](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
 3. Enable billing
-4. Enable Google App Engine API (https://support.google.com/cloud/answer/6158841?hl=en)
+4. Enable [Google App Engine API](https://support.google.com/cloud/answer/6158841?hl=en)
 5. Install GCP SDK
 6. Authenticate with Googe account: `gcloud auth login`
 7. Set GCP project to deploy to: `gcloud config set project PROJECT_ID`
 8. Run this command: `gcloud app deploy`. You might need to comment out these lines from app.yaml:
-```skip_files:
- - ^node_modules$```
+```
+skip_files:
+ - ^node_modules$
+```
 
 
 
